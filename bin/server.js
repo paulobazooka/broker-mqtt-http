@@ -2,26 +2,15 @@
 
 const http = require('http');
 const debug = require('debug')('nodestr:server');
-const express = require('express');
+const app = require('../src/app');
 
-const app = express();
 const port = normalizePort(process.env.PORT || '3000');   // process.env.PORT variável enviada pelo servidor
 
+// seta app com a porta escolhida
 app.set('port', port);
 
+// Criar servidor http utilizando as configurações de app
 const server = http.createServer(app);
-const router = express.Router();
-
-const route = router.get('/', (req, res, next)=>{
-    res.status(200).send({
-        mensagem:'Servidor'
-    });
-});
-
-// declaração de rota onde irá responder
-app.use('/', route);
-
-
 
 // servidor ouvindo na port especificada
 server.listen(port);
@@ -29,7 +18,6 @@ server.listen(port);
 server.on('error', onError);
 // função do servidor para
 server.on('listening', onListening);
-
 
 
 // função para normalizar a porta no servidor
