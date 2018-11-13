@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/paulobazooka/broker-mqtt-http#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "debug": "^4.1.0",
     "express": "^4.16.4",
     "http": "0.0.0",
