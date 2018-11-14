@@ -6,13 +6,13 @@ const sensorController = require('../controllers/sensor-controller'); // importa
 const router = express.Router();    // criar um constante rota    
 
 // declaração dos tipos de rotas relacionados ao recurso Sensor
-router.get('/sensor', sensorController.get);
-router.get('/sensor/:id', sensorController.getId);
-router.post('/sensor', sensorController.post);
-router.put('/sensor', sensorController.put);
-router.patch('/sensor', sensorController.path);
-router.delete('/sensor/:id', sensorController.delete);
-router.options('/sensor', sensorController.opt);
-router.head('/sensor', sensorController.head);
+router.get('/', sensorController.get);
+router.get('/:id', sensorController.getId);
+router.post('/', sensorController.post);
+router.put('/', sensorController.put);
+router.patch('/', sensorController.path);
+router.delete('/:id', sensorController.delete);
+router.options('/', sensorController.opt);
+router.head('/', sensorController.head);
 
 module.exports = router;
