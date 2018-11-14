@@ -6,6 +6,7 @@ const mongoose = require('mongoose'); // importa o pacote mongoose
 const mainRoute = require('../routes/main'); // importa a rota principal
 const sensorRoute = require('../routes/sensor-route'); // importa a rota de sensores
 const readingRoute = require('../routes/reading-route'); // importa a rota de leitura
+const gatewayRoute = require('../routes/gateway-route'); // importa a rota de gateway
 
 const app = express();  // cria uma constante app 
 
@@ -54,6 +55,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', mainRoute);
 app.use('/api/v1/sensor', sensorRoute);
 app.use('/api/v1/reading', readingRoute);
+app.use('/api/v1/gateway', gatewayRoute);
 
 // exporta o app
 module.exports = app;
