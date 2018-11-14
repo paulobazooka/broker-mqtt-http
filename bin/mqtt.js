@@ -1,14 +1,15 @@
 'use strict'
 
-const serverMqtt = require('../src/mqtt');
+const serverMqtt = require('../src/mosca');
+const gatewayService = require('../services/gateway-service');
 
 
   // Accepts the connection if the username and password are valid
   var authenticate = function(client, username, password, callback) {
         client.user = username;
-      /*  usuarioService.user_find_one(username, password, function(result){
+        gatewayService.getGatewayAuth(name, password, function(result){
             callback(null, result);
-        });*/
+        });
        // var _authorized = (username === 'techplus' && password.toString() === 'imachine');           
         
   }
@@ -16,17 +17,17 @@ const serverMqtt = require('../src/mqtt');
   // In this case the client authorized as alice can publish to /users/alice taking
   // the username from the topic and verifing it is the same of the authorized user
   var authorizePublish = function(client, topic, payload, callback) {
-   /* usuarioService.user_find_one_username(client.user, function(result){
+    gatewayService.getGatewayName(client.user, function(result){
         callback(null, result);
-    });*/
+    });
   }
   
   // In this case the client authorized as alice can subscribe to /users/alice taking
   // the username from the topic and verifing it is the same of the authorized user
   var authorizeSubscribe = function(client, topic, callback) {
-   /* usuarioService.user_find_one_username(client.user, function(result){
+    gatewayService.getGatewayName(client.user, function(result){
         callback(null, result);
-    });  */ 
+    });
     
   }
   
