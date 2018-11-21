@@ -10,5 +10,4 @@ router.get('/', readingController.get);
 router.get('/:id', readingController.getId);
 router.post('/', readingController.post);
 
-
 module.exports = router;

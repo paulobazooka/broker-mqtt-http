@@ -17,7 +17,6 @@ exports.get = (req, res, next) => {
 };
 
 
-
 exports.getId = (req, res, next) => {
    
     let id = req.params.id;
@@ -33,7 +32,6 @@ exports.getId = (req, res, next) => {
             });
         });
 };
-
 
 
 exports.post = (req, res, next) =>{

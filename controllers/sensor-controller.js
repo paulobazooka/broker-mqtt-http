@@ -19,10 +19,7 @@ exports.get = (req, res, next) => {
 
 // Controller que retornará um sensor específico do banco de dados
 exports.getId = (req, res, next) => {
-    console.log('GET ID');
     let id = req.params.id;
-
-    console.log("ID:", id);
     Sensor.findOne({_id: id})
             .then((foundSensor) =>{
                 res.status(200).send(foundSensor);

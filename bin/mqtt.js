@@ -10,8 +10,7 @@ const gatewayService = require('../services/gateway-service');
         gatewayService.getGatewayAuth(name, password, function(result){
             callback(null, result);
         });
-       // var _authorized = (username === 'techplus' && password.toString() === 'imachine');           
-        
+       // var _authorized = (username === 'techplus' && password.toString() === 'imachine');              
   }
   
   // In this case the client authorized as alice can publish to /users/alice taking
