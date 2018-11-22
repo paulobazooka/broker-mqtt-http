@@ -15,7 +15,6 @@ exports.getGateways = (callback) =>{
         });
 };
 
-
 exports.getGatewayId = (id, callback) =>{    
     Gateway.findOne({_id: id})
         .then((foundGateway)=>{

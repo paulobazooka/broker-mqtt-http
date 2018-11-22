@@ -6,29 +6,42 @@ const gatewayService = require('../services/gateway-service');
 
   // Accepts the connection if the username and password are valid
   var authenticate = function(client, username, password, callback){ 
-        client.user = username;
-        let pass = password.toString();
+        
+        if(username != null && password != null){
+            client.user = username;
+            let pass = password.toString();
 
-        callback(null, ()=>{
-            gatewayService.getGatewayAuth(username, pass);
-        });
+            callback(null, ()=>{
+                gatewayService.getGatewayAuth(username, pass);
+            });
+        }else{
+            callback(null, false);
+        }
   }
   
   // In this case the client authorized as alice can publish to /users/alice taking
   // the username from the topic and verifing it is the same of the authorized user
   var authorizePublish = function(client, topic, payload, callback) {
-    
-       callback(null, ()=>{
-        gatewayService.getGatewayName(username);
-    });
+
+        if(client.user != null){
+            callback(null, ()=>{
+                gatewayService.getGatewayName(client.user);
+            });
+        }else {
+            callback(null, false);
+        }
   }
   
   // In this case the client authorized as alice can subscribe to /users/alice taking
   // the username from the topic and verifing it is the same of the authorized user
   var authorizeSubscribe = function(client, topic, callback) {
-    gatewayService.getGatewayName(client.user, function(result){
-        callback(null, result.username, result.password);
-    });
+      if(client.user != null){
+            callback(null, ()=>{
+                gatewayService.getGatewayName(client.user);
+            });
+      }else{
+          callback(null, false);
+      }
   }
   
 function setup() {
@@ -64,6 +77,5 @@ serverMqtt.on('subscribed', function (topic, client) {
 serverMqtt.on('unsubscribed', function (topic, client) {
     console.log('unsubscribed: ' + client.id);
 });
-
 
 serverMqtt.on('ready', setup);
