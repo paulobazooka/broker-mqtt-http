@@ -2,7 +2,7 @@
 
 const Gateway = require('../models/gateway');
 
-exports.getGateways = function(callback){
+exports.getGateways = (callback) =>{
 
     Gateway.find()
         .then((foundGateways)=>{
@@ -11,12 +11,12 @@ exports.getGateways = function(callback){
         })
         .catch((error) =>{
             console.log("*** ERROR! Not found gateways - gateway-service ***", error);
+            callback(error);
         });
 };
 
 
-exports.getGatewayId = function(id, callback){
-    
+exports.getGatewayId = (id, callback) =>{    
     Gateway.findOne({_id: id})
         .then((foundGateway)=>{
             callback(foundGateway);
@@ -26,22 +26,22 @@ exports.getGatewayId = function(id, callback){
         });
 };
 
-exports.getGatewayAuth = function(name, password, callback){
-    Gateway.findOne({name: name, password: password})
-        .then((foundGateway)=>{
-            callback(foundGateway);
-        })
-        .catch((error)=>{
-           callback(error);
+exports.getGatewayAuth = (name, password) => {
+    Gateway.findOne({name: name, password: password.toString()})
+        .then(()=>{
+            callback(true);
+        }) 
+        .catch(()=>{
+            callback(false);
         });
 }
 
-exports.getGatewayName = function(name, callback){
+exports.getGatewayName = (name, callback) =>{
     Gateway.findOne({name: name})
-        .then((foundGateway)=>{
-            callback(foundGateway);
+        .then(()=>{
+            callback(true);
         })
-        .catch((error)=>{
-            callback(error);
+        .catch(()=>{
+            callback(false);
         });
 }

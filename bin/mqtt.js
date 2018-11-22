@@ -5,19 +5,21 @@ const gatewayService = require('../services/gateway-service');
 
 
   // Accepts the connection if the username and password are valid
-  var authenticate = function(client, username, password, callback) {
+  var authenticate = function(client, username, password, callback){ 
         client.user = username;
-        gatewayService.getGatewayAuth(name, password, function(result){
-            callback(null, result);
+        let pass = password.toString();
+
+        callback(null, ()=>{
+            gatewayService.getGatewayAuth(username, pass);
         });
-       // var _authorized = (username === 'techplus' && password.toString() === 'imachine');              
   }
   
   // In this case the client authorized as alice can publish to /users/alice taking
   // the username from the topic and verifing it is the same of the authorized user
   var authorizePublish = function(client, topic, payload, callback) {
-    gatewayService.getGatewayName(client.user, function(result){
-        callback(null, result);
+    
+       callback(null, ()=>{
+        gatewayService.getGatewayName(username);
     });
   }
   
@@ -25,9 +27,8 @@ const gatewayService = require('../services/gateway-service');
   // the username from the topic and verifing it is the same of the authorized user
   var authorizeSubscribe = function(client, topic, callback) {
     gatewayService.getGatewayName(client.user, function(result){
-        callback(null, result);
+        callback(null, result.username, result.password);
     });
-    
   }
   
 function setup() {

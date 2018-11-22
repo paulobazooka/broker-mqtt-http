@@ -5,6 +5,7 @@ const Sensor = require('../models/sensor');
 
 exports.get = (req, res, next) => {
     Reading.find()
+           .populate('sensor') 
            .then((foundReading) =>{
                 res.status(200).send(foundReading);
             })
@@ -22,6 +23,7 @@ exports.getId = (req, res, next) => {
     let id = req.params.id;
     
     Sensor.findOne({_id: id})
+        .populate('sensor') 
         .then((foundSensor)=>{
             Reading.find({sensor: foundSensor})
                 .then((foundReading) =>{

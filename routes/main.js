@@ -15,7 +15,7 @@ router.get('/', (req, res, next)=>{
     axios.get('https://estados-cidades.herokuapp.com/api/v1/estado')
         .then(response => {
             console.log(response.data);
-            console.log(response.status); // ex.: 200
+            //console.log(response.status); // ex.: 200
         })
         .catch(error => {
             console.log(error);
