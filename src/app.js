@@ -35,14 +35,14 @@ const options =
         socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity      
     }
 
-mongoose.connect('mongodb://ds058508.mlab.com:58508/mqtt-server', options).then(
-    () => { 
+mongoose.connect('mongodb://ds058508.mlab.com:58508/mqtt-server', options)
+      .then(() => { 
         console.log("**** Connected MongoDB ****");
     },
     err => { 
         console.log("**** ERROR! Not Connected ****", err);    
     }
-  );;
+  );
 
 
 

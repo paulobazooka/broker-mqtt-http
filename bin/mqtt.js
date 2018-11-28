@@ -3,7 +3,6 @@
 const serverMqtt = require('../src/mosca');
 const gatewayService = require('../services/gateway-service');
 
-
   // Accepts the connection if the username and password are valid
   var authenticate = function(client, username, password, callback){ 
         
@@ -18,7 +17,6 @@ const gatewayService = require('../services/gateway-service');
             callback(null, false);
         }
   }
-  
   // In this case the client authorized as alice can publish to /users/alice taking
   // the username from the topic and verifing it is the same of the authorized user
   var authorizePublish = function(client, topic, payload, callback) {
@@ -31,7 +29,6 @@ const gatewayService = require('../services/gateway-service');
             callback(null, false);
         }
   }
-  
   // In this case the client authorized as alice can subscribe to /users/alice taking
   // the username from the topic and verifing it is the same of the authorized user
   var authorizeSubscribe = function(client, topic, callback) {
